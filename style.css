@@ -25,3 +25,7 @@ div.main-container {
     background-color: blue;
     flex: 1;
 }
+
+.hover {
+    background-color: blueviolet;
+}
