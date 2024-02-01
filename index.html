@@ -40,19 +40,38 @@
                 for (let j=0; j<size; j++){
                     let row = document.createElement("div");
                     row.classList.add("row");
+                    // uncomment below for gradual darkening
+                    // row.style.backgroundColor = "rgba(0,0,0,0)";
                     row.addEventListener('mouseenter', ()=>{
-                        // row.classList.add("hover");
-                        let red = Math.floor(Math.random() * 255);
-                        let green = Math.floor(Math.random() * 255);
-                        let blue = Math.floor(Math.random() * 255);
-                        row.style.backgroundColor = "rgb("+red+","+green+","+blue+")";
+                        // assignment - just make the div black (apply a class with a CSS style)
+                        row.classList.add("hover");
+
+                        // extra credit 1 - create random rgb color for the div background
+                        // let red = Math.floor(Math.random() * 255);
+                        // let green = Math.floor(Math.random() * 255);
+                        // let blue = Math.floor(Math.random() * 255);
+                        // row.style.backgroundColor = "rgb("+red+","+green+","+blue+")";
+                        // console.log(row.style.backgroundColor)
+                        
+                        // extra credit 2 - gradual darkening
+                        // const rgbaBackground = row.style.backgroundColor;
+                        // let alpha = parseFloat(rgbaBackground.split(",")[3]);
+                        // console.log(rgbaBackground, alpha)
+                        // if (alpha<1){
+                        //     alpha+=0.1;
+                        // } else {
+                        //     alpha = 1;
+                        // }
+                        // row.style.backgroundColor = "rgba(0,0,0,"+alpha+")";
                     })
-                    row.addEventListener('mouseleave', ()=>{
-                        setTimeout(function() {
-                            // row.classList.remove("hover");
-                            row.style.backgroundColor = "";
-                        },500);
-                    });
+                    // let the div stay colored for a half second, then blank again
+                    // not in the assignment, but I think it's cool...
+                    // row.addEventListener('mouseleave', ()=>{
+                    //     setTimeout(function() {
+                    //         // row.classList.remove("hover");
+                    //         row.style.backgroundColor = "";
+                    //     },500);
+                    // });
                     column.appendChild(row);
                 }
             mainContainer.appendChild(column);
