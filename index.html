@@ -7,27 +7,56 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+    <div class="title-bar">
+        <button id="set-size">Set Grid Size</button>
+    </div>
     <div class="main-container">
         <!-- <div class="square">
 
         </div> -->
     </div>
     <script>
-        const numRows = 16;
-        const numCols = 16;
+        let size = null;
+        const numRows = size;
+        const numCols = size;
+        const sizeButton = document.querySelector("#set-size");
         const mainContainer = document.querySelector(".main-container");
-        for (let i=0; i<numCols; i++){
-            let column = document.createElement("div");
-            column.classList.add("column");
-            for (let j=0; j<numRows; j++){
-                let row = document.createElement("div");
-                row.classList.add("row");
-                row.addEventListener('mouseover', ()=>{
-                    row.classList.add("hover");
-                })
-                column.appendChild(row);
+        sizeButton.addEventListener('click', chooseSize);
+        function chooseSize (){
+            size = prompt("Enter number of squares per side", "16");
+            size = parseInt(size);
+            paintGrid(size);
+        }
+        function clearGrid(){
+            while (mainContainer.firstChild){
+                mainContainer.removeChild(mainContainer.firstChild);
             }
+        }
+        function paintGrid(size){
+            clearGrid();
+            for (let i=0; i<size; i++){
+                let column = document.createElement("div");
+                column.classList.add("column");
+                for (let j=0; j<size; j++){
+                    let row = document.createElement("div");
+                    row.classList.add("row");
+                    row.addEventListener('mouseenter', ()=>{
+                        // row.classList.add("hover");
+                        let red = Math.floor(Math.random() * 255);
+                        let green = Math.floor(Math.random() * 255);
+                        let blue = Math.floor(Math.random() * 255);
+                        row.style.backgroundColor = "rgb("+red+","+green+","+blue+")";
+                    })
+                    row.addEventListener('mouseleave', ()=>{
+                        setTimeout(function() {
+                            // row.classList.remove("hover");
+                            row.style.backgroundColor = "";
+                        },500);
+                    });
+                    column.appendChild(row);
+                }
             mainContainer.appendChild(column);
+            }
         }
     </script>
 </body>
